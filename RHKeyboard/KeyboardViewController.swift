@@ -38,6 +38,14 @@ class KeyboardViewController: UIInputViewController {
         self.nextKeyboardButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         
         view.addKeyboardSubview(UIHostingController(rootView: keyboardView).view)
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "addKey"),
+                                               object: nil,
+                                               queue: nil) { notification in
+            if let text = notification.object as? String {
+                self.textDocumentProxy.insertText(text)
+            }
+        }
     }
     
     override func viewWillLayoutSubviews() {

@@ -11,15 +11,15 @@ struct RHKeyboardView: View {
     var body: some View {
         HStack {
             Button {
-                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addKey"), object: "I will call you latter")
             } label: {
                 Text("I will call you latter")
                     .frame(width: 100,height: 80)
             }
             Button {
-                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addKey"), object: "Go away")
             } label: {
-                Text("fuck off man")
+                Text("Go away")
                     .frame(width: 100,height: 80)
             }
         }
