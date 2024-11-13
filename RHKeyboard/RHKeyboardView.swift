@@ -9,7 +9,20 @@ import SwiftUI
 
 struct RHKeyboardView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Button {
+                
+            } label: {
+                Text("I will call you latter")
+                    .frame(width: 100,height: 80)
+            }
+            Button {
+                
+            } label: {
+                Text("fuck off man")
+                    .frame(width: 100,height: 80)
+            }
+        }
     }
 }
 

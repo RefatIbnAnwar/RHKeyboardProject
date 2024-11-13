@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import SwiftUI
 
 class KeyboardViewController: UIInputViewController {
 
     @IBOutlet var nextKeyboardButton: UIButton!
+    
+    private let keyboardView = RHKeyboardView()
     
     override func updateViewConstraints() {
         super.updateViewConstraints()
@@ -33,6 +36,8 @@ class KeyboardViewController: UIInputViewController {
         
         self.nextKeyboardButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.nextKeyboardButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        
+        view.addKeyboardSubview(UIHostingController(rootView: keyboardView).view)
     }
     
     override func viewWillLayoutSubviews() {
@@ -57,4 +62,20 @@ class KeyboardViewController: UIInputViewController {
         self.nextKeyboardButton.setTitleColor(textColor, for: [])
     }
 
+}
+
+
+extension UIView {
+    
+    func addKeyboardSubview(_ subview: UIView) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(subview)
+        NSLayoutConstraint.activate([
+            subview.leftAnchor.constraint(equalTo: self.leftAnchor),
+            subview.rightAnchor.constraint(equalTo: self.rightAnchor),
+            subview.topAnchor.constraint(equalTo: self.topAnchor),
+            subview.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+        
+    }
 }
